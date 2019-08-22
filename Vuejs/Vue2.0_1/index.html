@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue js 2.0</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<style type="text/css">
+			.completed{
+				color: #5cb85c;
+				text-decoration: line-through;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-static-top">
+		      <div class="container">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		            <span class="sr-only">Vue js 2.0</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="#">Vue js 2.0</a>
+		        </div>
+		        <div id="navbar" class="collapse navbar-collapse">
+		          <ul class="nav navbar-nav">
+		            <li class="active"><a href="#">Home</a></li>
+		            <li><a href="#about">About</a></li>
+		            <li><a href="#contact">Contact</a></li>
+		          </ul>
+		        </div><!--/.nav-collapse -->
+		      </div>
+		    </nav>
+		
+		<div class="container" id="app">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">Welcome Vue js 2.0 Tutorial</div>
+					<div class="panel-body">
+						<h1>{{ message }}</h1>
+						<input type="text" v-model="message" />
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">My Todos {{todoCount}}</div>
+					<div class="panel-body">
+						<ul class="list-group">
+							<li class="list-group-item" 
+								v-for="(todo,index) in todos"
+								v-bind:class="{ 'completed' : todo.completed }">
+								
+								{{todo.title}}
+								
+								<button class="btn btn-xs pull-right"
+									v-bind:class="[todo.completed ? 'btn-danger' : 'btn-success']"
+									v-on:click="toggleCompletion(todo)"> 
+									{{ todo.completed ? 'undo' : 'completed' }}
+								</button>
+									
+								<button class="btn btn-warning btn-xs pull-right"
+									v-on:click="deleteTodo(index)">
+									Delete
+								</button>
+							</li>
+						</ul>
+						
+						<form v-on:submit.prevent="addTodo(newTodo)">
+							<div class="form-group">
+								<input type="text" 
+									v-model="newTodo.title" class="form-control" placeholder="Add a new Todo"/>
+							</div>
+							<div class="form-group">
+								<input type="submit" class="btn btn-success" value="Add Todo"/>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data:{
+					message: 'Hello World',
+					todos:[
+						{id:1, title: "Learn Vuejs", completed: false}
+					],
+					newTodo: {id:null, title: "", completed: false}
+				},
+				computed:{
+					todoCount(){
+						return this.todos.length
+					}
+				},
+				methods:{
+					addTodo(newTodo){
+						this.todos.push(newTodo)
+						this.newTodo = {id:null, title: "", completed: false}
+					},
+					deleteTodo(index){
+						this.todos.splice(index,1)
+					},
+					toggleCompletion(todo){
+						todo.completed = ! todo.completed
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
