@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404</title>
+    <script src="js/holder.js"></script>
+    <style>
+        html,*{
+            margin: 0;
+            padding: 0;
+        }
+        .content{
+            width: 100%;
+            margin: 0 auto;
+        }
+        .content img{
+            display: block;
+            width: 100%;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+    <img src="img/480.png" alt="" class="image"
+        srcset="img/1600.png 1600w,img/480.png 480w,img/800.png 800w"
+        sizes="50vw">
+
+    <picture>
+        <source media="(max-width:36em)"
+                srcset="img/tiananmen-s.jpg 768w">
+        <source srcset="img/tiananmen.jpg 1800w">
+        <source type="image/svg+xml" srcset="img/log.svg 480w,img/log.svg 800w,img/log.svg 1600w">
+        <img src="img/tiananmen.jpg" alt="">
+    </picture>
+</div>
+
+</body>
+</html>
