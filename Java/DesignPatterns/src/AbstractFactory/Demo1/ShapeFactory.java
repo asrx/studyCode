@@ -1,10 +1,10 @@
-package AbstractFactory;
+package AbstractFactory.Demo1;
 
-import AbstractFactory.interfaces.Color;
-import AbstractFactory.interfaces.Shape;
-import AbstractFactory.services.Circle;
-import AbstractFactory.services.Rectangle;
-import AbstractFactory.services.Square;
+import AbstractFactory.Demo1.interfaces.Color;
+import AbstractFactory.Demo1.interfaces.Shape;
+import AbstractFactory.Demo1.services.Circle;
+import AbstractFactory.Demo1.services.Rectangle;
+import AbstractFactory.Demo1.services.Square;
 
 public class ShapeFactory extends AbstractFactory {
 

@@ -1,7 +1,9 @@
 package AbstractFactory;
 
-import AbstractFactory.interfaces.Color;
-import AbstractFactory.interfaces.Shape;
+import AbstractFactory.Demo1.AbstractFactory;
+import AbstractFactory.Demo1.FactoryProducer;
+import AbstractFactory.Demo1.interfaces.Color;
+import AbstractFactory.Demo1.interfaces.Shape;
 
 public class TestClass {
     public static void main(String[] args) {

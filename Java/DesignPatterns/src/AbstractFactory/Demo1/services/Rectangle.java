@@ -1,6 +1,6 @@
-package AbstractFactory.services;
+package AbstractFactory.Demo1.services;
 
-import AbstractFactory.interfaces.Shape;
+import AbstractFactory.Demo1.interfaces.Shape;
 
 public class Rectangle implements Shape {
     @Override

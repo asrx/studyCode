@@ -1,7 +1,7 @@
-package AbstractFactory;
+package AbstractFactory.Demo1;
 
-import AbstractFactory.interfaces.Color;
-import AbstractFactory.interfaces.Shape;
+import AbstractFactory.Demo1.interfaces.Color;
+import AbstractFactory.Demo1.interfaces.Shape;
 
 public abstract class AbstractFactory {
     public abstract Shape getShape(String shapeType);

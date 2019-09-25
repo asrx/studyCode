@@ -1,6 +1,6 @@
-package AbstractFactory.services;
+package AbstractFactory.Demo1.services;
 
-import AbstractFactory.interfaces.Color;
+import AbstractFactory.Demo1.interfaces.Color;
 
 public class Green implements Color {
     @Override

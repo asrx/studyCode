@@ -1,9 +1,9 @@
-package AbstractFactory;
+package AbstractFactory.Demo1;
 
-import AbstractFactory.interfaces.Color;
-import AbstractFactory.interfaces.Shape;
-import AbstractFactory.services.Green;
-import AbstractFactory.services.Red;
+import AbstractFactory.Demo1.interfaces.Color;
+import AbstractFactory.Demo1.interfaces.Shape;
+import AbstractFactory.Demo1.services.Green;
+import AbstractFactory.Demo1.services.Red;
 
 public class ColorFactory extends AbstractFactory {
     @Override

@@ -1,4 +1,4 @@
-package AbstractFactory;
+package AbstractFactory.Demo1;
 
 public class FactoryProducer {
     public static AbstractFactory getFactory(String choice){
