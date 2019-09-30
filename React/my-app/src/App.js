@@ -1,19 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Bar from "./views/Bar";
+import Foo from "./views/Foo";
+import Home from "./views/Home";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to Reactjs</h2>
-        
-        <p className="App-intro">
-          你可以在 <code>src/App.js</code> 文件中修改。
-        </p>
-      </header>
-    </div>
+      <Router>
+          <div>
+              <nav>
+                  <ul>
+                      <li>
+                          <Link to="/">Home</Link>
+                      </li>
+                      <li>
+                          <Link to="/foo">Foo</Link>
+                      </li>
+                      <li>
+                          <Link to="/bar">Bar</Link>
+                      </li>
+                  </ul>
+              </nav>
+
+              {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+              <Switch>
+                  <Route path="/foo">
+                      <Foo />
+                  </Route>
+                  <Route path="/bar">
+                      <Bar />
+                  </Route>
+                  <Route path="/">
+                      <Home />
+                  </Route>
+              </Switch>
+          </div>
+      </Router>
   );
 }
 
