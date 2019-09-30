@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 加载 React。-->
+  <!-- 注意: 部署时，将 "development.js" 替换为 "production.min.js"。-->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  <script src="https://cdn.staticfile.org/prop-types/15.6.1/prop-types.js"></script>  
+  
+    <script type="text/babel">
+
+        class HelloMessage extends React.Component {
+            render(){
+                return (
+                    <h1>Hello, {this.props.name}</h1>
+                )
+            }
+        }
+
+        HelloMessage.defaultProps = {
+            name: 'Donovan.X'
+        }
+
+        const element = <HelloMessage />
+
+
+
+        class WebSite extends React.Component{
+            constructor(){
+                super()
+
+                this.state = {
+                    name: 'Donovan',
+                    site: 'http://www.baidu.com'
+                }
+            }
+
+            render(){
+                return (
+                    <div>
+                        <Name name={this.state.name}/>
+                        <Link site={this.state.site}/>
+                        </div>
+                )
+            }
+        }
+
+        class Name extends React.Component{
+            render(){
+                return (
+                    <h1>{this.props.name}</h1>
+                )
+            }
+        }
+
+        class Link extends React.Component{
+            render(){
+                return (
+                    <a href={this.props.site}>{this.props.site}</a>
+                )
+            }
+        }
+
+        var title = "React JS";
+        // var title = 123;
+        class MyTitle extends React.Component {
+            render() {
+                return (
+                <h1>Hello, {this.props.title}</h1>
+                );
+            }
+        }
+        
+        MyTitle.propTypes = {
+            title: PropTypes.string
+        };
+        
+        ReactDOM.render(
+            // <WebSite />,
+            <MyTitle title={title} />,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 加载 React。-->
+  <!-- 注意: 部署时，将 "development.js" 替换为 "production.min.js"。-->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.js"></script>
+  
+    <script type="text/babel">
+   
+        class Reservation extends React.Component{
+            constructor(props){
+                super(props)
+
+                this.state = {isGoing: true, numberOfGuests: 2}
+
+                this.handleInputChange = this.handleInputChange.bind(this)
+
+                this.handleSubmit = this.handleSubmit.bind(this)
+            }
+
+            handleInputChange(event){
+                const target = event.target
+                const value = target.type === 'checkbox' ? target.checked : target.value
+                const name = target.name
+
+                this.setState({
+                    [name]: value
+                })
+
+            }
+
+            handleSubmit(event){
+
+                console.log(this.state)
+                event.prevenDefault
+            }
+
+            render() {
+                return (
+                    <div>
+                        <label>
+                            是否离开:
+                            <input
+                                name="isGoing"
+                                type="checkbox"
+                                checked={this.state.isGoing}
+                                onChange={this.handleInputChange} />
+                            </label>
+                            <br />
+                        <label>
+                            访客数:
+                            <input
+                                name="numberOfGuests"
+                                type="number"
+                                value={this.state.numberOfGuests}
+                                onChange={this.handleInputChange} />
+                        </label>
+                        <input type="button"  onClick={this.handleSubmit} value="提 交" />
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <Reservation />,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>

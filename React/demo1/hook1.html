@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 加载 React。-->
+  <!-- 注意: 部署时，将 "development.js" 替换为 "production.min.js"。-->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  
+  
+    <script type="text/babel">
+    function Example() {
+        // 声明一个新的叫做 “count” 的 state 变量
+        const [count, setCount] = React.useState(0);
+
+        // 相当于 componentDidMount 和 componentDidUpdate:
+        React.useEffect(() => {
+            // 使用浏览器的 API 更新页面标题
+            document.title = `You clicked ${count} times`;
+        });
+        
+        return (
+            <div>
+            <p>You clicked {count} times</p>
+            <button onClick={() => setCount(count + 1)}>
+                Click me
+            </button>
+            </div>
+        );
+    }
+
+    class MyInput extends React.Component{
+
+        constructor(props){
+            super(props)
+        }
+
+        render(){
+            const [msg,setMsg] = React.useState('Hello')
+            return (
+                <div>
+                    <input type="text" value={msg} onChange={()=> setMsg(this.value)}/>
+                    <h4>{msg}</h4>
+                    </div>
+            )
+        }
+    }
+    function FriendStatus(props) {
+        const [isOnline, setIsOnline] = React.useState(null);
+
+        function handleStatusChange(status) {
+            setIsOnline(status.isOnline);
+        }
+
+        React.useEffect(() => {
+            React.ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+
+            return () => {
+                React.ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+            };
+        });
+
+        if (isOnline === null) {
+            return 'Loading...';
+        }
+        return isOnline ? 'Online' : 'Offline';
+    }
+    
+        ReactDOM.render(
+            // <Example />,
+            // <MyInput />,
+            <FriendStatus />,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
