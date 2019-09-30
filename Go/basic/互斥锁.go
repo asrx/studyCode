@@ -1,0 +1,81 @@
+package main
+
+import (
+	"fmt"
+	_"errors"
+	_"strconv"
+	_"math"
+	"time"
+	"sync/atomic"
+	"runtime"
+	"math/rand"
+	"sync"
+)
+
+// 使用一个互斥锁 来在 Go 协程间安全的访问数据
+
+func main() {
+
+	var state = make(map[int]int)
+
+	//  mutex 将同步对 state 的访问
+	var mutex = &sync.Mutex{}
+
+	// ops 将记录我们对 state 的操作次数
+	var ops int64 = 0
+
+	// 这里我们运行 100 个 Go 协程来重复读取 state
+	for r := 0;r < 100; r++ {
+		go func () {
+
+			total := 0
+
+			for {
+
+				// 每次循环读取，我们使用一个键来进行访问， Lock() 这个 mutex 来确保对 state 的 独占访问，读取选定的键的值，Unlock() 这个 mutex，并且 ops 值加 1
+				key := rand.Intn(5)
+				mutex.Lock()
+				total += state[key]
+				mutex.Unlock()
+				atomic.AddInt64(&ops, 1)
+
+				// 为了确保这个 Go 协程不会在调度中饿死，我们 在每次操作后明确的使用 runtime.Gosched() 进行释放
+				// 这个释放一般是自动处理的，像例如 每个通道操作后或者 time.Sleep 的阻塞调用后 相似，但是在这个例子中我们需要手动的处理
+				runtime.Gosched()
+			}
+			
+		}()
+	}
+
+	// 运行 10 个 Go 协程来模拟写入操作，使用 和读取相同的模式
+	for w := 0; w < 10; w++ {
+		go func () {
+			for {
+				key := rand.Intn(5)
+				val := rand.Intn(100)
+
+				mutex.Lock()
+				state[key] = val
+				mutex.Unlock()
+				atomic.AddInt64(&ops, 1)
+				runtime.Gosched()
+			}
+		}()
+	}
+
+	time.Sleep(time.Second)
+
+	opsFinal := atomic.LoadInt64(&ops)
+	// 获取并输出最终的操作计数
+	fmt.Println("ops:",opsFinal)
+
+	// 对 state 使用一个最终的锁，显示它是如何结束的
+	mutex.Lock()
+	fmt.Println("state:",state)
+	mutex.Unlock()
+
+}
+
+/*
+运行这个程序，显示我们对已进行了同步的 state 执行了 3,500,000 次操作
+*/
