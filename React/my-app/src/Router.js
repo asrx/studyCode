@@ -5,19 +5,13 @@ import Foo from './views/Foo';
 import Bar from './views/Bar';
 
 
-// const BasicRoute = () => (
-//     <HashRouter>
-//         <Switch>
-//             <Route exact path="/" component={Home}/>
-//             <Route exact path="/foo" component={Foo}/>
-//             <Route exact path="/bar" component={Bar}/>
-//         </Switch>
-//     </HashRouter>
-// );
+const BasicRoute = () => (
+    <div>
+        <Route exact path="/" component={Home}/>
+        <Route path="/foo" component={Foo}/>
+        <Route path="/bar" component={Bar}/>
+    </div>
+);
 
 
-export default {
-    Foo,
-    Bar,
-    Home
-};
+export default BasicRoute;

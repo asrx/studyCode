@@ -1,19 +1,11 @@
 import React, {Component} from 'react'
+import HelloWorld from '../components/HelloWorld'
 
 class Foo extends React.Component {
     render() {
         return (
-            <div>
-                <h2>Foo</h2>
-                <p>Mauris sem velit, vehicula eget sodales vitae,
-                    rhoncus eget sapien:</p>
-                <ol>
-                    <li>Nulla pulvinar diam</li>
-                    <li>Facilisis bibendum</li>
-                    <li>Vestibulum vulputate</li>
-                    <li>Eget erat</li>
-                    <li>Id porttitor</li>
-                </ol>
+            <div className="hello">
+                <HelloWorld msg="Welcome to Your React App"/>
             </div>
         )
     }
