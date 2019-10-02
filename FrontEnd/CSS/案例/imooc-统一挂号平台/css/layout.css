@@ -1,40 +1,46 @@
-body{
-  padding: 0;
+body {
   margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+a {
+  text-decoration: none;
+}
+/*通用样式*/
+.wrap{
+  width: 1000px;
+  margin: 0px auto;
+  position: relative;
 }
 .clearfix:after{
-  content: ' ';
+  content: " ";
   display: block;
   height: 0;
   line-height: 0;
   clear: both;
-  zoom: 1;
+  zoom:1;
 }
-/*通用*/
-.wrap{
-  width: 1000px;
-  margin: 0 auto;
-  position: relative;
-  background-color: #1fa4f0;
-}
+/*框架布局*/
+
 .top{
   height: 30px;
-  background: #f4f6fa;
+  background-color: #f5f5f5;
 }
 .header{
   height: 92px;
 }
 .nav{
   height: 36px;
-  background-color: #606060;
+  background-color: #60bff2;
 }
+
 .banner{
   width: 802px;
-  height: 414px;
   margin: 0 auto;
-  padding: 9px 0 0 198px;
-  background-color: #00B3EA;
+  height: 414px; /*432px*/
+  padding:9px 0 0 198px;
 }
+
 .banner-slider{
   float: left;
   width: 544px;
@@ -61,21 +67,25 @@ body{
   float: left;
   width: 742px;
   height: 490px;
+  background-color: #eee;
 }
-.content-news,
-.content-close{
+.content-close,
+.content-news{
   float: right;
   width: 248px;
   height: 236px;
-  border: 1px solid #ccc;
+  border:1px solid #ccc;
 }
 .content-close{
   margin-top: 12px;
-  border-color: red;
-
+  border:1px solid #aaa;
 }
 .footer{
-  height: 132px;
-  padding: 25px 0;
-  background-color: #ececf2;
+  text-align: center;
+  height: 70px;
+  /*padding:25px 0;*/
+  line-height: 70px;
+  background-color: #eceef2;
 }
+
+
